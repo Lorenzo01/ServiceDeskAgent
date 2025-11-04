@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Desk Bot | AI Assistant </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/CM-Logo.png') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Chat Section -->
+        <main class="chat-section">
+            <header class="header">
+                <div class="title">
+                    <img src="{{ url_for('static', filename='images/CM-Logo.png') }}" alt="Logo" style="height: 32px;">
+                    <h1>Service Desk Bot</h1>
+                </div>
+                <div class="toolbar">
+                    <a href="#" id="email-support-btn" class="btn-email-header" title="Email RecordSystem Service Desk">
+                        📧 Email Service Desk
+                    </a>
+                    <button id="feedback-btn" class="btn-secondary" title="Submit App Feedback">⭐
+                        Feedback</button>
+                    <button id="theme-toggle-btn" class="btn-icon" title="Toggle Theme">☀️</button>
+                    <button id="reset-btn" class="btn-secondary" title="Clear chat history">Reset
+                        Chat</button>
+                </div>
+            </header>
+
+            <div id="chat-window" class="chat-window">
+                <div id="welcome-screen" class="welcome-screen">
+                    <img src="{{ url_for('static', filename='images/CM-Logo.png') }}" alt="Logo" class="welcome-logo">
+                    <h2>Welcome to Service Desk Bot</h2>
+                    <p>Your AI assistant for Service Desk support and troubleshooting.</p>
+
+                    <div class="suggestions">
+                        <button class="suggestion-chip"
+                            onclick="useSuggestion('How do I save a document to RecordSystem from Microsoft Word or Outlook?')">
+                            How do I save a document to RecordSystem from Microsoft Word or Outlook?
+                        </button>
+                        <button class="suggestion-chip"
+                            onclick="useSuggestion('What should I do if I encounter an \'Access Denied\' error in RecordSystem?')">
+                            What should I do if I encounter an "Access Denied" error in RecordSystem?
+                        </button>
+                        <button class="suggestion-chip"
+                            onclick="useSuggestion('What are the steps to create a new folder in RecordSystem?')">
+                            What are the steps to create a new folder in RecordSystem?
+                        </button>
+                        <button class="suggestion-chip"
+                            onclick="useSuggestion('How do I troubleshoot unreadable content in a RecordSystem record?')">
+                            How do I troubleshoot unreadable content in a RecordSystem record?
+                        </button>
+                    </div>
+                </div>
+                <!-- Messages will be appended here -->
+                <div id="messages-list"></div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="user-input" placeholder="Ask a question..." rows="1"></textarea>
+                    <button id="send-btn" class="send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" <!-- PDF
+                            Viewer Panel (Hidden for now) -->
+                            <aside id="pdf-panel" class="pdf-panel" style="display: none;">
+                                <div class="pdf-header">
+                                    <h3 id="pdf-title">Document Viewer</h3>
+                                    <button id="close-pdf" class="close-pdf">&times;</button>
+                                </div>
+                                <div class="pdf-content">
+                                    <iframe id="pdf-frame" class="pdf-frame" src=""></iframe>
+                                </div>
+                            </aside>
+                </div>
+
+                <!-- App Feedback Modal -->
+                <div id="appFeedbackModal" class="modal"
+                    style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(2px);">
+                    <div class="modal-content"
+                        style="background-color: #fefefe; margin: 10% auto; padding: 30px; border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
+                        <span class="close" onclick="document.getElementById('appFeedbackModal').style.display='none'"
+                            style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                        <h2 style="margin-top: 0; color: #0f172a;">Submit Feedback</h2>
+                        <p style="color: #64748b; margin-bottom: 20px;">How was your experience with the Service Desk
+                            Bot?</p>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Rating</label>
+                            <div class="star-rating"
+                                style="display: flex; gap: 10px; font-size: 1.5rem; cursor: pointer;">
+                                <span onclick="setRating(1)">⭐</span>
+                                <span onclick="setRating(2)">⭐</span>
+                                <span onclick="setRating(3)">⭐</span>
+                                <span onclick="setRating(4)">⭐</span>
+                                <span onclick="setRating(5)">⭐</span>
+                            </div>
+                            <input type="hidden" id="feedback-rating" value="0">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label for="feedback-comment"
+                                style="display: block; margin-bottom: 8px; font-weight: 500;">Comments</label>
+                            <textarea id="feedback-comment" rows="4"
+                                style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-family: inherit;"
+                                placeholder="Tell us what you think..."></textarea>
+                        </div>
+
+                        <div style="text-align: right;">
+                            <button onclick="submitAppFeedback()"
+                                style="background-color: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500;">Submit
+                                Feedback</button>
+                        </div>
+                    </div>
+                </div>
+
+                <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+                <script>
+                    // Feedback Modal Logic
+                    const feedbackBtn = document.getElementById('feedback-btn');
+                    const feedbackModal = document.getElementById('appFeedbackModal');
+
+                    if (feedbackBtn) {
+                        feedbackBtn.onclick = () => feedbackModal.style.display = "block";
+                    }
+
+                    window.onclick = (e) => {
+                        if (e.target == feedbackModal) feedbackModal.style.display = "none";
+                    }
+
+                    function setRating(rating) {
+                        document.getElementById('feedback-rating').value = rating;
+                        const stars = document.querySelectorAll('.star-rating span');
+                        stars.forEach((star, index) => {
+                            star.style.opacity = index < rating ? '1' : '0.3';
+                        });
+                    }
+
+                    // Initialize stars
+                    setRating(0);
+
+                    function submitAppFeedback() {
+                        const rating = document.getElementById('feedback-rating').value;
+                        const comment = document.getElementById('feedback-comment').value;
+
+                        if (rating == 0) {
+                            alert('Please select a rating');
+                            return;
+                        }
+
+                        fetch('/submit_app_feedback', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ rating: parseInt(rating), comment: comment })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    alert('Thank you for your feedback!');
+                                    feedbackModal.style.display = 'none';
+                                    // Reset form
+                                    setRating(0);
+                                    document.getElementById('feedback-comment').value = '';
+                                } else {
+                                    alert('Error: ' + data.message);
+                                }
+                            })
+                            .catch(err => alert('Error submitting feedback'));
+                    }
+                </script>
+</body>
+
+</html>

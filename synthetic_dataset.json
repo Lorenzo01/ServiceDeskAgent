@@ -1,0 +1,302 @@
+[
+    {
+        "question": "Who is responsible for enforcing the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Remote Access apply to students?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Email Usage apply to students?",
+        "ground_truth": "The Email Usage ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Email Usage Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What is the objective of the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Cyber Security Policy?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Cyber Security Policy?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Incident Response?",
+        "ground_truth": "The Incident Response ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Incident Response Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Software Installation?",
+        "ground_truth": "The Software Installation ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Software Installation Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Cyber Security Policy?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What is the objective of the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Acceptable Use Policy?",
+        "ground_truth": "The Acceptable Use Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Acceptable Use Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Cyber Security Policy apply to students?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Acceptable Use Policy?",
+        "ground_truth": "The Acceptable Use Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Acceptable Use Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Network Security apply to students?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Incident Response apply to students?",
+        "ground_truth": "The Incident Response ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Incident Response Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Software Installation?",
+        "ground_truth": "The Software Installation ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Software Installation Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Cyber Security Policy?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What is the objective of the Network Security?",
+        "ground_truth": "The Network Security ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Network Security Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Data Classification apply to students?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Cyber Security Policy?",
+        "ground_truth": "The Cyber Security Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cyber Security Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Acceptable Use Policy?",
+        "ground_truth": "The Acceptable Use Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Acceptable Use Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Email Usage?",
+        "ground_truth": "The Email Usage ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Email Usage Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What is the objective of the Incident Response?",
+        "ground_truth": "The Incident Response ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Incident Response Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "How do I report a breach of the Remote Access?",
+        "ground_truth": "The Remote Access ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Remote Access Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Cloud Storage?",
+        "ground_truth": "The Cloud Storage ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Cloud Storage Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What is the objective of the Data Classification?",
+        "ground_truth": "The Data Classification ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Data Classification Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Does the Incident Response apply to students?",
+        "ground_truth": "The Incident Response ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Incident Response Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Software Installation?",
+        "ground_truth": "The Software Installation ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Software Installation Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "What are the penalties for violating the Email Usage?",
+        "ground_truth": "The Email Usage ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Email Usage Document",
+        "evolution_type": "simple"
+    },
+    {
+        "question": "Who is responsible for enforcing the Password Policy?",
+        "ground_truth": "The Password Policy ensures the confidentiality, integrity, and availability of University assets. Violations may result in disciplinary action.",
+        "context_source": "Password Policy Document",
+        "evolution_type": "simple"
+    }
+]

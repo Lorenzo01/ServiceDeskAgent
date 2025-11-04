@@ -1,0 +1,64 @@
+[
+    {
+        "timestamp": "2025-11-30T10:00:00",
+        "user_query": "test",
+        "bot_response": "response",
+        "rating": 1
+    },
+    {
+        "timestamp": "2025-11-30T10:05:00",
+        "user_query": "test2",
+        "bot_response": "response2",
+        "rating": -1
+    },
+    {
+        "timestamp": "2025-11-30T10:10:00",
+        "user_query": "test3",
+        "bot_response": "response3",
+        "rating": 1
+    },
+    {
+        "timestamp": "2025-11-30T22:47:51.180775",
+        "message_id": "1764503258920",
+        "user_query": "What constitutes misuse of IT resources?",
+        "bot_response": "Misuse of IT resources at Macquarie University includes, but is not limited to, the following:\n\n*   **Unauthorized Use:** Using IT resources for any purpose other than an authorized one.\n*   **Breach of Law or Policy:** Use that violates any law, statute, regulation, or University policy, procedure, or rule.\n*   **Illegal Material:** Creating, transmitting, storing, downloading, or possessing illegal material.\n*   **Copyright Infringement:** Accessing, displaying, copying, downloading, distributing, storing, or sharing pirated software, games, video, music, images, fonts, or other copyrighted material.\n*   **Offensive Material:** Deliberate or reckless creation, transmission, storage, downloading, or display of any offensive or menacing images, data, or other material, except for appropriate use in supervised University work or study.\n*   **Intellectual Property Infringement:** Use that infringes on the intellectual property rights or copyright of another person or organization.\n*   **Defamation:** Communications that would be actionable under defamation law.\n*   **Misrepresentation:** Communications that misrepresent a personal view as the view of the University.\n*   **Unauthorized Recording/Publishing:** Unauthorized recording, publishing, or communication of University lectures, tutorials, meetings, or conversations.\n*   **Disruptive Activities:** Deliberate or reckless activities that result in:\n    *   An unreasonable burden on the University\u2019s IT resources.\n    *   Corruption or disruption of data on the University\u2019s IT resources or data of another person or organization.\n    *   Disruption to other authorized users.\n    *   Introduction or transmission of hostile or intrusive software (e.g., viruses, worms, Trojan horses).\n*   **Circumventing Security:** Circumventing authentication or access control measures, security, or restrictions on the use of any IT resources or account.\n*   **Unauthorized Access:** Unauthorized accessing of information, including servers, hard drives, email accounts, or files.\n*   **Unauthorized Reservation:** Unauthorized reserving of, or exclusion of others from using, any IT resources.\n*   **Privacy Breach:** Breaching the University\u2019s Privacy Policy.\n*   **Interference with Operations:** Performing an act that interferes with the normal operation of any IT resources.\n*   **Unauthorized Logo Use:** Unauthorized use of the University logo.\n*   **Impersonation:** Representing that a message or material comes from another person without their authorization.\n*   **Malicious Software:** Knowingly running, installing, or distributing programs intended to damage or place excessive load on IT resources (e.g., viruses, Trojan horses, worms).\n*   **External Provider Conditions:** Failure to comply with conditions of use imposed by an external provider when their equipment or services are used with University IT resources.\n*   **Password Security:** Providing a password or other means of authentication to another person without prior written approval from the Chief Information Officer, or failing to take reasonable care to protect a password from being accessed or used by another person.\n*   **Lack of Care:** Failing to exercise reasonable care in the use, management, and maintenance of IT resources.\n\n**Source:** Acceptable Use of IT Resources \u2013 Misuse Schedule",
+        "sources": [
+            "data\\Acceptable Use of IT Resources - Misuse Schedule.pdf"
+        ],
+        "rating": 1,
+        "comment": ""
+    },
+    {
+        "timestamp": "2025-11-30T22:49:54.082668",
+        "message_id": "1764503361200",
+        "user_query": "What happens if i breach these policies?",
+        "bot_response": "I cannot answer this based on the available policy documents. Please contact the Policy team at policy@mq.edu.au.",
+        "sources": [
+            "data\\Acceptable Use of IT Resources - Misuse Schedule.pdf",
+            "data\\Research_Data_Management_Policy.pdf",
+            "data\\Cyber_Security_Policy.pdf",
+            "data\\Access_and_Security_Procedure.pdf",
+            "data\\Records_and_Information_Management_Policy.pdf"
+        ],
+        "rating": -1,
+        "comment": ""
+    },
+    {
+        "timestamp": "2025-11-30T23:06:03.787018",
+        "message_id": "1764504358841",
+        "user_query": "Who do I contact for policy enquiries?",
+        "bot_response": "You should contact the Policy team in Governance Services at policy@mq.edu.au for policy enquiries.",
+        "sources": [],
+        "rating": 1,
+        "comment": ""
+    },
+    {
+        "timestamp": "2025-11-30T23:17:34.873102",
+        "message_id": "1764505045017",
+        "user_query": "Who do I contact for policy enquiries?",
+        "bot_response": "You can contact the Policy team in Governance Services at policy@mq.edu.au for policy enquiries.",
+        "sources": [],
+        "rating": 1,
+        "comment": ""
+    }
+]

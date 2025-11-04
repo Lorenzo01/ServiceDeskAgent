@@ -1,0 +1,77 @@
+[
+    {
+        "timestamp": "2025-11-30T10:00:00",
+        "query": "test",
+        "response_time": 1.2
+    },
+    {
+        "timestamp": "2025-11-30T10:05:00",
+        "query": "test2",
+        "response_time": 0.8
+    },
+    {
+        "timestamp": "2025-11-30T22:47:38.906375",
+        "query": "What constitutes misuse of IT resources?",
+        "response_time": 6.04
+    },
+    {
+        "timestamp": "2025-11-30T22:49:21.199094",
+        "query": "What happens if i breach these policies?",
+        "response_time": 7.98
+    },
+    {
+        "timestamp": "2025-11-30T23:05:58.838709",
+        "query": "Who do I contact for policy enquiries?",
+        "response_time": 1.81
+    },
+    {
+        "timestamp": "2025-11-30T23:17:25.013304",
+        "query": "Who do I contact for policy enquiries?",
+        "response_time": 1.91
+    },
+    {
+        "timestamp": "2025-11-30T23:21:37.938935",
+        "query": "Who do I contact for policy enquiries?",
+        "response_time": 1.66
+    },
+    {
+        "timestamp": "2025-11-30T23:42:20.775956",
+        "query": "Who do I contact for policy enquiries?",
+        "response_time": 1.47
+    },
+    {
+        "timestamp": "2025-12-01T01:01:22.480244",
+        "query": "Who do I contact for policy enquiries?",
+        "response_time": 2.03
+    },
+    {
+        "timestamp": "2025-12-01T01:02:58.327319",
+        "query": "What constitutes misuse of IT resources?",
+        "response_time": 6.03
+    },
+    {
+        "timestamp": "2025-12-01T09:08:21.669292",
+        "query": "Explain the computer security procedure",
+        "response_time": 5.95
+    },
+    {
+        "timestamp": "2025-12-01T17:20:24.244623",
+        "query": "What is the policy on academic promotion?",
+        "response_time": 3.49
+    },
+    {
+        "timestamp": "2025-12-01T17:26:42.603358",
+        "query": "What constitutes misuse of IT resources?",
+        "response_time": 6.87
+    },
+    {
+        "timestamp": "2025-12-01T17:30:31.179171",
+        "query": "can i use my own device to record tutotirla?S",
+        "response_time": 4.1
+    },
+    {
+        "timestamp": "2025-12-01T17:30:58.401807",
+        "query": "Can i gamble using uni computers?",
+        "response_time": 4.66
+    }
+]
