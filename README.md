@@ -1,28 +1,100 @@
-# Service Desk Agentic RAG
+# Service Desk AI 🤖
 
-An AI-powered Service Desk assistant designed to help users with application inquiries and troubleshooting. It uses a RAG (Retrieval-Augmented Generation) architecture with Google Gemini and local FAISS vector search to provide accurate, sourced answers.
+An agentic RAG (Retrieval-Augmented Generation) assistant designed to help staff and students navigate Macquarie University policies. Built with **LangChain**, **Flask**, and **Google Gemini**, it provides accurate, sourced answers with transparent reasoning.
 
-## Features
-- **Specialized Knowledge**: Expert on application functionality and troubleshooting (currently configured for Visual Studio Code).
-- **RAG Architecture**: Retrieves information from indexed support tickets and documentation.
-- **Streaming Responses**: Real-time feedback with a "Thinking..." process indicator.
-- **Interactive Support Handoff**: Proactively offers to email the Service Desk if the query is unresolved, including an AI-generated summary.
-- **Modern UI**: Cyberpunk/Glassmorphism inspired interface with dark/light mode.
-- **PDF Viewer**: Integrated side-panel viewer for source documents.
+## ✨ Features
 
-## Tech Stack
-- **Backend**: Python, Flask, LangChain
-- **AI/Search**: Google Gemini (LLM & Embeddings), FAISS (Vector Store)
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+*   **📚 Specialized Knowledge Base** - Indexes and retrieves from official PDF policy documents.
+*   **🧠 Agentic Reasoning** - Uses a ReAct loop (Thought, Action, Observation) to break down complex queries.
+*   **⚡ Real-time Streaming** - Displays the agent's "thought process" and final response in real-time.
+*   **📊 Admin Dashboard**
+    *   **Analytics** - Track query volume, sentiment, and response times.
+    *   **Feedback Loop** - Review user feedback and "ingest" corrected answers into a Golden Dataset.
+    *   **Evaluation** - Built-in RAGAS evaluation tab to assess Faithfulness, Answer Relevancy, and Context Precision.
+*   **🧪 Synthetic Data Generation** - Automatically generates test cases from your data for evaluation.
 
-## How to Run
-1.  Install dependencies: `pip install -r requirements.txt`
-2.  Set up your environment variables:
-    - Copy `.env.example` to `.env`
-    - Add your `GOOGLE_API_KEY`
-3.  Ingest the knowledge base: `python ingest_data.py`
-4.  Run the application: `python app.py`
-5.  Access at `http://localhost:8090`
+## 🏗️ Architecture
 
-## Knowledge Base
-The current knowledge base is configured with a sample dataset of Visual Studio Code support tickets (`data/vscode_support_tickets.csv`). You can replace this with your own dataset by updating the CSV file and the `ingest_data.py` script.
+![Architecture Diagram](Architecture.png)
+
+## 🛠️ Tech Stack
+
+*   **LLM** - Google Gemini (via `langchain-google-genai`)
+*   **Vector Store** - FAISS
+*   **Backend** - Flask (Python)
+*   **Frontend** - Vanilla JS, HTML5, CSS3
+*   **Evaluation** - RAGAS (RAG Assessment)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+*   Python 3.10+
+*   Google Cloud API Key (with Gemini access)
+
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/Lorenzo01/ServiceDeskAgent.git
+    cd ServiceDeskAgent
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Configure Environment**
+    Create a `.env` file in the root directory
+    ```env
+    GOOGLE_API_KEY=your_api_key_here
+    FLASK_SECRET_KEY=your_secret_key
+    ```
+
+4.  **Ingest Data**
+    Place your PDF documents in the `data/` directory and run
+    ```bash
+    python ingest_data.py
+    ```
+
+5.  **Generate Evaluation Data (Optional)**
+    Create a synthetic test set for RAGAS evaluation
+    ```bash
+    python generate_synthetic_data.py
+    ```
+
+6.  **Run the Application**
+    ```bash
+    python app.py
+    ```
+    Access the chat interface at `http://localhost:8090`.
+    Access the admin panel at `http://localhost:8090/admin`.
+
+## 📈 Evaluation
+
+The project includes a dedicated **Evaluation Tab** in the admin panel.
+1.  Navigate to `/admin/evaluation`.
+2.  Click **Run Evaluation**.
+3.  The system will run a subset of the synthetic dataset through the RAG pipeline and evaluate the results using RAGAS metrics
+    *   **Faithfulness** - Is the answer derived from the context?
+    *   **Answer Relevancy** - Is the answer relevant to the question?
+    *   **Context Precision** - Was the relevant context retrieved?
+
+## 📂 Project Structure
+
+```
+├── data/                   # PDF source documents
+├── faiss_index/            # Vector store index
+├── static/                 # CSS, JS, Images
+├── templates/              # HTML templates
+├── admin_routes.py         # Admin dashboard logic
+├── app.py                  # Main Flask application
+├── ingest_data.py          # Data ingestion script
+├── service_desk_bot.py     # Core RAG agent logic
+└── requirements.txt        # Python dependencies
+```
+
+## ⚠️ Disclaimer
+
+This project is not affiliated with, endorsed by, or employed by Macquarie University. The policy documents used in this system were taken from the Macquarie University Policy Portal for demonstration and decision-point simulation purposes only.

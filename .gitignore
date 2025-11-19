@@ -1,10 +1,5 @@
-# User requested ignores
 
-TODO.md
-RAGAS_WORKFLOW.md
-planning.md
-implementation_plan.md
-task.md
+
 
 # Python
 __pycache__/
@@ -41,3 +36,24 @@ ENV/
 
 # Environment variables
 .env
+
+# Runtime Data
+faiss_index/
+query_log.json
+feedback_log.json
+app_feedback.json
+golden_dataset.json
+synthetic_dataset.json
+
+
+demo_script.md
+content_plan.md
+
+# Mockups
+mockup*.html
+
+# Scripts
+rebase_editor.ps1
+
+# Data
+data/

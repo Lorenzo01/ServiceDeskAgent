@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RecordSystem AI - App Feedback</title>
-    <link rel="icon" href="{{ url_for('static', filename='images/CM-Logo.png') }}">
+    <title>Service Desk AI - App Feedback</title>
+    <!-- <link rel="icon" href="static/images/CM-Logo.png"> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -304,17 +304,18 @@
     <div class="container">
         <header>
             <div class="header-content">
-                <h1>RecordSystem AI Review Dashboard</h1>
+                <h1>Service Desk AI Review Dashboard</h1>
                 <p>Monitor general application feedback and user satisfaction.</p>
                 <nav class="nav-links">
                     <a href="{{ url_for('admin.index') }}" class="nav-link">Chat Feedback</a>
-                    <a href="#" class="nav-link active">App Feedback</a>
+                    <a href="{{ url_for('admin.app_feedback_view') }}" class="nav-link active">App Feedback</a>
                     <a href="{{ url_for('admin.analytics_view') }}" class="nav-link">Analytics</a>
+                    <a href="{{ url_for('admin.evaluation_view') }}" class="nav-link">Evaluation</a>
                 </nav>
             </div>
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-value" id="total-count">{{ feedback|length }}</div>
+                    <div class="stat-value" id="total-count">0</div>
                     <div class="stat-label">Total Feedback</div>
                 </div>
             </div>
@@ -347,108 +348,117 @@
                     </tr>
                 </thead>
                 <tbody id="table-body">
-                    {% for item in feedback %}
-                    <tr data-id="{{ item.id }}" data-rating="{{ item.rating }}">
-                        <td class="col-time">
-                            {{ item.timestamp[:10] }}<br>
-                            {{ item.timestamp[11:16] }}
-                        </td>
-                        <td class="col-rating">
-                            <div class="rating-badge rating-{{ item.rating }}">
-                                {% if item.rating == 5 %}⭐⭐⭐⭐⭐{% endif %}
-                                {% if item.rating == 4 %}⭐⭐⭐⭐{% endif %}
-                                {% if item.rating == 3 %}⭐⭐⭐{% endif %}
-                                {% if item.rating == 2 %}⭐⭐{% endif %}
-                                {% if item.rating == 1 %}⭐{% endif %}
-                            </div>
-                        </td>
-                        <td class="col-comment">{{ item.comment }}</td>
-                        <td class="col-actions">
-                            <button class="btn btn-danger" onclick="deleteFeedback({{ item.id }})">🗑️ Delete</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                    <!-- Rows will be populated by JS -->
                 </tbody>
             </table>
-            <div id="empty-state" class="empty-state" {% if feedback|length> 0 %}style="display:none"{% endif %}>
+            <div id="empty-state" class="empty-state">
                 No feedback found matching your filters.
             </div>
         </div>
     </div>
 
     <script>
+        // Data from Flask
+        let mockData = {{ feedback | tojson }};
+
+        // Render Table
+        function renderTable(data) {
+            const tbody = document.getElementById('table-body');
+            const emptyState = document.getElementById('empty-state');
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            emptyState.style.display = 'none';
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="col-time">
+                        ${new Date(item.timestamp).toLocaleDateString()}<br>
+                        ${new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </td>
+                    <td class="col-rating">
+                        <div class="rating-badge rating-${item.rating}">${'⭐'.repeat(item.rating)}</div>
+                    </td>
+                    <td class="col-comment">${item.comment}</td>
+                    <td class="col-actions">
+                        <button class="btn btn-danger" onclick="deleteFeedback('${item.id}')">🗑️ Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('total-count').textContent = data.length;
+        }
+
+        // Filter Logic
         function filterTable() {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
             const ratingFilter = document.getElementById('rating-filter').value;
-            const rows = document.querySelectorAll('#table-body tr');
-            let visibleCount = 0;
 
-            rows.forEach(row => {
-                const comment = row.querySelector('.col-comment').textContent.toLowerCase();
-                const rating = row.getAttribute('data-rating');
+            const filtered = mockData.filter(item => {
+                const matchesSearch = item.comment.toLowerCase().includes(searchTerm);
 
-                let matchesSearch = comment.includes(searchTerm);
                 let matchesRating = true;
-                if (ratingFilter !== 'all') matchesRating = rating === ratingFilter;
+                if (ratingFilter !== 'all') matchesRating = item.rating === parseInt(ratingFilter);
 
-                if (matchesSearch && matchesRating) {
-                    row.style.display = '';
-                    visibleCount++;
-                } else {
-                    row.style.display = 'none';
-                }
+                return matchesSearch && matchesRating;
             });
 
-            document.getElementById('empty-state').style.display = visibleCount === 0 ? 'block' : 'none';
-            document.getElementById('total-count').textContent = visibleCount;
+            renderTable(filtered);
         }
 
+        // Sort Logic
         let sortAsc = false;
         function sortTable(colIndex) {
             sortAsc = !sortAsc;
-            const tbody = document.getElementById('table-body');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-
-            rows.sort((a, b) => {
+            const sorted = [...mockData].sort((a, b) => {
                 if (colIndex === 0) { // Time
-                    const timeA = a.querySelector('.col-time').textContent.trim();
-                    const timeB = b.querySelector('.col-time').textContent.trim();
-                    return sortAsc ? timeA.localeCompare(timeB) : timeB.localeCompare(timeA);
+                    return sortAsc ? new Date(a.timestamp) - new Date(b.timestamp) : new Date(b.timestamp) - new Date(a.timestamp);
                 }
                 if (colIndex === 1) { // Rating
-                    const ratingA = parseInt(a.getAttribute('data-rating'));
-                    const ratingB = parseInt(b.getAttribute('data-rating'));
-                    return sortAsc ? ratingA - ratingB : ratingB - ratingA;
+                    return sortAsc ? a.rating - b.rating : b.rating - a.rating;
                 }
                 return 0;
             });
-
-            rows.forEach(row => tbody.appendChild(row));
+            renderTable(sorted);
         }
 
-        function deleteFeedback(id) {
+        async function deleteFeedback(id) {
             if (confirm('Are you sure you want to delete this feedback?')) {
-                fetch('/admin/delete_app_feedback', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: id })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            // Remove row from DOM
-                            const row = document.querySelector(`tr[data-id="${id}"]`);
-                            if (row) {
-                                row.remove();
-                                filterTable(); // Update counts
-                            }
-                        } else {
-                            alert('Error deleting feedback: ' + data.message);
+                try {
+                    const response = await fetch("{{ url_for('admin.delete_app_feedback') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: id })
+                    });
+
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        // Update local data
+                        const index = mockData.findIndex(d => d.id === id);
+                        if (index > -1) {
+                            mockData.splice(index, 1);
+                            filterTable(); // Re-render
                         }
-                    })
-                    .catch(error => alert('Error: ' + error));
+                    } else {
+                        alert('Error deleting feedback: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting feedback.');
+                }
             }
         }
+
+        // Initial Render
+        renderTable(mockData);
+
     </script>
 </body>
 

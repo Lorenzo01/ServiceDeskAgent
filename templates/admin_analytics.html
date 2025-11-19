@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RecordSystem AI - Analytics</title>
-    <link rel="icon" href="{{ url_for('static', filename='images/CM-Logo.png') }}">
+    <title>Service Desk AI - Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -212,10 +211,6 @@
         .query-count {
             color: #64748b;
         }
-
-        .query-trend {
-            font-size: 0.8rem;
-        }
     </style>
 </head>
 
@@ -223,12 +218,13 @@
     <div class="container">
         <header>
             <div class="header-content">
-                <h1>RecordSystem AI Analytics</h1>
+                <h1>Service Desk AI Analytics</h1>
                 <p>Track performance, usage trends, and user satisfaction.</p>
                 <nav class="nav-links">
                     <a href="{{ url_for('admin.index') }}" class="nav-link">Chat Feedback</a>
                     <a href="{{ url_for('admin.app_feedback_view') }}" class="nav-link">App Feedback</a>
-                    <a href="#" class="nav-link active">Analytics</a>
+                    <a href="{{ url_for('admin.analytics_view') }}" class="nav-link active">Analytics</a>
+                    <a href="{{ url_for('admin.evaluation_view') }}" class="nav-link">Evaluation</a>
                 </nav>
             </div>
             <div class="stats">
@@ -248,57 +244,78 @@
         <div class="dashboard-grid">
             <div class="metric-card">
                 <div class="metric-title">Total Queries</div>
+                <div class="metric-value">{{ metrics.total_queries }}</div>
+                <div class="metric-trend trend-up">
+                    <span>All time</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Avg. Response Time</div>
+                <div class="metric-value">{{ metrics.avg_response_time }}s</div>
+                <div class="metric-trend trend-up">
+                    <span>Target: < 2.0s</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">User Satisfaction</div>
+                <div class="metric-value">{{ metrics.satisfaction_rate }}%</div>
+                <div class="metric-trend trend-up">
+                    <span>Positive ratings</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Ingestion Rate</div>
+                <div class="metric-value">{{ metrics.ingestion_rate }}%</div>
+                <div class="metric-trend">
+                    of verified answers
+                </div>
             </div>
         </div>
-        <div class="metric-card">
-            <div class="metric-title">Ingestion Rate</div>
-            <div class="metric-value">{{ metrics.ingestion_rate }}%</div>
-            <div class="metric-trend">
-                of verified answers
-            </div>
-        </div>
-    </div>
 
-    <!-- Charts -->
-    <div class="charts-row">
-        <div class="chart-card">
-            <div class="chart-header">
-                <div class="chart-title">Query Volume (Last 7 Days)</div>
+        <!-- Charts -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Query Volume (Last 7 Days)</div>
+                </div>
+                <canvas id="volumeChart"></canvas>
             </div>
-            <canvas id="volumeChart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Feedback Sentiment</div>
+                </div>
+                <div style="height: 300px; display: flex; justify-content: center;">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="chart-card">
-            <div class="chart-header">
-                <div class="chart-title">Feedback Sentiment</div>
-            </div>
-            <div style="height: 300px; display: flex; justify-content: center;">
-                <canvas id="sentimentChart"></canvas>
-            </div>
-        </div>
-    </div>
 
-    <!-- Top Queries -->
-    <div class="top-queries-card">
-        <div class="table-header">
-            <h3 class="table-title">Top User Queries</h3>
+        <!-- Top Queries -->
+        <div class="top-queries-card">
+            <div class="table-header">
+                <h3 class="table-title">Top User Queries</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Query</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in metrics.top_queries %}
+                    <tr>
+                        <td class="query-text">{{ item.query }}</td>
+                        <td class="query-count">{{ item.count }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2" style="text-align:center; color:#64748b;">No queries recorded yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Query</th>
-                    <th>Count</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for q in metrics.top_queries %}
-                <tr>
-                    <td class="query-text">{{ q.query }}</td>
-                    <td class="query-count">{{ q.count }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
     </div>
 
     <script>

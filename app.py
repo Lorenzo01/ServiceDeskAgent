@@ -1,10 +1,18 @@
+import os
+import json
+import time
+import logging
+from datetime import datetime
+from flask import Flask, render_template, request, jsonify, session, Response, stream_with_context, send_from_directory
+from werkzeug import serving
+from service_desk_bot import ask_service_desk_stream
+
+app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersecretkey")
 
 # Register Admin Blueprint
 from admin_routes import admin_bp
 app.register_blueprint(admin_bp)
-
-
 
 @app.route('/')
 def index():
@@ -20,7 +28,7 @@ def chat():
 
     # Get chat history safely
     chat_history = session.get('chat_history', [])
-    
+
     # Define generator for streaming
     def generate():
         start_time = time.time()
@@ -33,7 +41,7 @@ def chat():
         needs_email_support = False
         
         # Stream events from the bot
-        for event in ask_bot_stream(user_input, chat_history, dev_settings):
+        for event in ask_service_desk_stream(user_input, chat_history, dev_settings):
             yield json.dumps(event) + "\n"
             
             if event['type'] == 'answer':
@@ -85,10 +93,6 @@ def summarize():
     from service_desk_bot import summarize_conversation
     summary = summarize_conversation(history)
     return jsonify({'summary': summary})
-
-@app.route(POLLING_ENDPOINT)
-def healthcheck():
-    return 'OK', 200
 
 # Serve local PDFs from the 'data/decrypted' directory
 @app.route('/files/<path:filename>')
@@ -163,4 +167,5 @@ def submit_app_feedback():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=READONLY_PORT, debug=False)
+    port = int(os.environ.get('PORT', 8090))
+    app.run(host='127.0.0.1', port=port, debug=False)
