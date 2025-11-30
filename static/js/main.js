@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const avatar = document.createElement('div');
         avatar.className = 'avatar';
-        avatar.textContent = '🤖';
+        avatar.textContent = '🎓';
         avatar.style.fontSize = '24px';
 
         const bubble = document.createElement('div');
@@ -328,12 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (role === 'user') {
             avatar.textContent = '👤';
         } else {
-            const img = document.createElement('img');
-            img.src = '/static/images/CM-Logo.png';
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.borderRadius = '50%';
-            avatar.appendChild(img);
+            avatar.textContent = '🎓';
+            avatar.style.fontSize = '24px';
         }
 
         const bubble = document.createElement('div');
@@ -358,20 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
-    function openPdf(url, title) {
-        if (!url) {
-            alert('No document URL available for this source.');
-            return;
-        }
-        pdfTitle.textContent = title || 'Document Viewer';
-        pdfFrame.src = url;
-        pdfPanel.classList.add('open');
-    }
 
-    function closePdf() {
-        pdfPanel.classList.remove('open');
-        pdfFrame.src = '';
-    }
 
 
 
@@ -494,148 +477,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function addMessage(text, role, sources = [], needsEmail = false, originalQuery = '') {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${role}`;
 
-        const avatar = document.createElement('div');
-        avatar.className = 'avatar';
-        if (role === 'user') {
-            avatar.textContent = '👤';
-        } else {
-            avatar.textContent = '🤖';
-            avatar.style.fontSize = '24px';
-        }
-
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble';
-
-        // Simple markdown parsing for the text
-        bubble.innerHTML = parseMarkdown(text);
-
-        msgDiv.appendChild(avatar);
-        msgDiv.appendChild(bubble);
-        messagesList.appendChild(msgDiv);
-        scrollToBottom();
-        return msgDiv.id = 'msg-' + Date.now();
-    }
-
-    function removeMessage(id) {
-        const el = document.getElementById(id);
-        if (el) el.remove();
-    }
-
-    function scrollToBottom() {
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-
-
-    function parseMarkdown(text) {
-        if (!text) return '';
-
-        // Use marked if available, otherwise fallback to simple parsing
-        if (typeof marked !== 'undefined') {
-            return marked.parse(text);
-        }
-
-        // Escape HTML
-        let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        // Bold
-        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // Links
-        html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-        // Newlines to br
-        html = html.replace(/\n/g, '<br>');
-        return html;
-    }
-
-    function createActionButtons(messageId, userQuery, botResponse, sources) {
-        const container = document.createElement('div');
-        container.className = 'message-actions';
-
-        // Thumbs Up
-        const upBtn = document.createElement('button');
-        upBtn.className = 'action-btn';
-        upBtn.innerHTML = '👍';
-        upBtn.title = 'Good response';
-        upBtn.onclick = () => sendFeedback(messageId, userQuery, botResponse, sources, 1, upBtn, downBtn);
-
-        // Thumbs Down
-        const downBtn = document.createElement('button');
-        downBtn.className = 'action-btn';
-        downBtn.innerHTML = '👎';
-        downBtn.title = 'Bad response';
-        downBtn.onclick = () => sendFeedback(messageId, userQuery, botResponse, sources, -1, downBtn, upBtn);
-
-        // Copy
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'action-btn';
-        copyBtn.innerHTML = '📋';
-        copyBtn.title = 'Copy to clipboard';
-        copyBtn.onclick = () => {
-            navigator.clipboard.writeText(botResponse).then(() => {
-                copyBtn.classList.add('copy-success');
-                copyBtn.innerHTML = '✅';
-                setTimeout(() => {
-                    copyBtn.classList.remove('copy-success');
-                    copyBtn.innerHTML = '📋';
-                }, 2000);
-            });
-        };
-
-        // Email Support (New)
-        const emailBtn = document.createElement('button');
-        emailBtn.className = 'action-btn';
-        emailBtn.innerHTML = '📧';
-        emailBtn.title = 'Email Service Desk';
-        emailBtn.onclick = (e) => {
-            const footerBtn = document.getElementById('email-support-footer');
-            if (footerBtn) footerBtn.click();
-        };
-
-        container.appendChild(upBtn);
-        container.appendChild(downBtn);
-        container.appendChild(copyBtn);
-        container.appendChild(emailBtn);
-
-        return container;
-    }
-
-    async function sendFeedback(messageId, userQuery, botResponse, sources, rating, btn, otherBtn) {
-        // Toggle active state
-        if (btn.classList.contains('active')) {
-            btn.classList.remove('active');
-            return;
-        }
-
-        // Confirmation
-        const sentiment = rating === 1 ? "positive" : "negative";
-        if (!confirm(`Are you sure you want to submit ${sentiment} feedback?`)) {
-            return;
-        }
-
-        btn.classList.add('active');
-        otherBtn.classList.remove('active');
-
-        try {
-            const response = await fetch('/feedback', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message_id: messageId,
-                    user_query: userQuery,
-                    bot_response: botResponse,
-                    sources: sources,
-                    rating: rating
-                })
-            });
-
-            if (response.ok) {
-                alert("Thank you for your feedback! This helps us improve Service Desk AI.");
-            }
-        } catch (err) {
-            console.error('Feedback failed:', err);
-        }
-    }
 });

@@ -21,7 +21,7 @@
         <main class="chat-section">
             <header class="header">
                 <div class="title">
-                    <img src="{{ url_for('static', filename='images/CM-Logo.png') }}" alt="Logo" style="height: 32px;">
+                    <span style="font-size: 24px;">🎓</span>
                     <h1>Service Desk Bot</h1>
                 </div>
                 <div class="toolbar">
@@ -38,26 +38,24 @@
 
             <div id="chat-window" class="chat-window">
                 <div id="welcome-screen" class="welcome-screen">
-                    <img src="{{ url_for('static', filename='images/CM-Logo.png') }}" alt="Logo" class="welcome-logo">
-                    <h2>Welcome to Service Desk Bot</h2>
-                    <p>Your AI assistant for Service Desk support and troubleshooting.</p>
+                    <div class="welcome-logo"
+                        style="font-size: 80px; display: flex; align-items: center; justify-content: center; background: transparent; box-shadow: none;">
+                        🎓</div>
+                    <h2>Service Desk AI</h2>
+                    <p>Your AI assistant for University policies, procedures, and guidelines.</p>
 
                     <div class="suggestions">
                         <button class="suggestion-chip"
-                            onclick="useSuggestion('How do I save a document to the system from Microsoft Word or Outlook?')">
-                            How do I save a document to the system from Microsoft Word or Outlook?
+                            onclick="useSuggestion('What is the acceptable use of IT resources?')">
+                            What is the acceptable use of IT resources?
                         </button>
                         <button class="suggestion-chip"
-                            onclick="useSuggestion('What should I do if I encounter an \'Access Denied\' error?')">
-                            What should I do if I encounter an "Access Denied" error?
+                            onclick="useSuggestion('What is the penalty for late submission?')">
+                            What is the penalty for late submission?
                         </button>
                         <button class="suggestion-chip"
-                            onclick="useSuggestion('What are the steps to create a new folder?')">
-                            What are the steps to create a new folder?
-                        </button>
-                        <button class="suggestion-chip"
-                            onclick="useSuggestion('How do I troubleshoot unreadable content in a record?')">
-                            How do I troubleshoot unreadable content in a record?
+                            onclick="useSuggestion('Tell me about cyber records and information management')">
+                            Tell me about cyber records and information management
                         </button>
                     </div>
                 </div>
@@ -69,17 +67,18 @@
                 <div class="input-wrapper">
                     <textarea id="user-input" placeholder="Ask a question..." rows="1"></textarea>
                     <button id="send-btn" class="send-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" <!-- PDF
-                            Viewer Panel (Hidden for now) -->
-                            <aside id="pdf-panel" class="pdf-panel" style="display: none;">
-                                <div class="pdf-header">
-                                    <h3 id="pdf-title">Document Viewer</h3>
-                                    <button id="close-pdf" class="close-pdf">&times;</button>
-                                </div>
-                                <div class="pdf-content">
-                                    <iframe id="pdf-frame" class="pdf-frame" src=""></iframe>
-                                </div>
-                            </aside>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="disclaimer">
+                    <p><strong>Disclaimer:</strong> I am not affiliated with Macquarie University. This application is
+                        for learning purposes only.</p>
+                    <p>Service Desk AI may make mistakes. Please verify important information. If your query remains
+                        unresolved, <a href="#" id="email-support-footer">contact the service desk</a>.</p>
                 </div>
 
                 <!-- App Feedback Modal -->

@@ -323,7 +323,7 @@ def run_evaluation():
         dataset = Dataset.from_dict(data)
         
         # Configure RAGAS with Gemini
-        # RAGAS uses LLMProvider by default. We need to patch it or pass llm/embeddings.
+        # RAGAS uses default LLMs. We need to patch it or pass llm/embeddings.
         # In recent RAGAS versions, we pass llm/embeddings to evaluate()
         
         print("Starting RAGAS evaluation...")
