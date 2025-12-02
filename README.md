@@ -1,4 +1,4 @@
-# Service Desk AI 🤖
+# Service Desk AI 🎓
 
 An agentic RAG (Retrieval-Augmented Generation) assistant designed to help staff and students navigate Macquarie University policies. Built with **LangChain**, **Flask**, and **Google Gemini**, it provides accurate, sourced answers with transparent reasoning.
 
@@ -97,5 +97,6 @@ The project includes a dedicated **Evaluation Tab** in the admin panel.
 
 ## ⚠️ Disclaimer
 
-This project is not affiliated with, endorsed by, or employed by Macquarie University. The policy documents used in this system were taken from the Macquarie University Policy Portal for demonstration and decision-point simulation purposes only.
+This project is not affiliated with, endorsed by, or employed by Macquarie University. The policy documents used in this system were taken from the Macquarie University Policy Portal for demonstration and decision-point simulation purposes only.If you have any questions please contact policies@mq.edu.au directly.
+
  

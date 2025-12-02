@@ -83,5 +83,20 @@
         "timestamp": "2025-12-02T13:40:55.156093",
         "query": "What is the acceptable use of IT resources?",
         "response_time": 8.83
+    },
+    {
+        "timestamp": "2025-12-02T14:07:04.383077",
+        "query": "What is the acceptable use of IT resources?",
+        "response_time": 8.9
+    },
+    {
+        "timestamp": "2025-12-02T14:07:13.289852",
+        "query": "What is the penalty for late submission?",
+        "response_time": 3.89
+    },
+    {
+        "timestamp": "2025-12-02T14:14:03.433432",
+        "query": "What is the penalty for late submission?",
+        "response_time": 5.75
     }
 ]
